@@ -1,0 +1,15 @@
+from collections import Counter
+import string
+reviews = [
+    "Great product! Highly recommend.",
+    "Not what I expected. Quality could be better.",
+    "Excellent! Worth the price.",
+    "Terrible customer service. Will not buy again."
+]
+text = " ".join(reviews).lower()
+text = text.translate(str.maketrans('', '', string.punctuation))
+words = text.split()
+word_freq = Counter(words)
+print("Word Frequency Distribution:")
+for word, freq in word_freq.items():
+    print(f"{word}: {freq}")
