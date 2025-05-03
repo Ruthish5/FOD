@@ -1,0 +1,27 @@
+import pandas as pd
+import string
+import matplotlib.pyplot as plt
+from collections import Counter
+from nltk.corpus import stopwords
+import nltk
+nltk.download('stopwords')
+df = pd.read_csv('data.csv')
+stop_words = set(stopwords.words('english'))
+all_text = " ".join(df['feedback'].dropna()).lower()
+all_text = all_text.translate(str.maketrans('', '', string.punctuation))
+words = [word for word in all_text.split() if word not in stop_words]
+word_freq = Counter(words)
+N = int(input("Enter the number of top frequent words to display: "))
+top_words = word_freq.most_common(N)
+print("Top", N, "words:")
+for word, freq in top_words:
+    print(f"{word}: {freq}")
+words, freqs = zip(*top_words)
+plt.figure(figsize=(10, 5))
+plt.bar(words, freqs, color='skyblue')
+plt.title("Top N Frequent Words")
+plt.xlabel("Words")
+plt.ylabel("Frequencies")
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
