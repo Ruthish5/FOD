@@ -1,0 +1,11 @@
+import pandas as pd
+import scipy.stats as stats
+df = pd.read_csv('customer_reviews.csv')
+ratings = df['rating'].dropna()
+mean_rating = ratings.mean()
+sem = stats.sem(ratings)
+confidence = 0.95
+margin = sem * stats.t.ppf((1 + confidence) / 2, len(ratings) - 1)
+ci = (mean_rating - margin, mean_rating + margin)
+print(f"Average Rating: {mean_rating:.2f}")
+print(f"{int(confidence*100)}% Confidence Interval: {ci}")
