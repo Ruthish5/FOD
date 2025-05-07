@@ -1,0 +1,11 @@
+from sklearn.tree import DecisionTreeRegressor, export_text
+import numpy as np
+X = np.array([[50000, 3, 0, 1], [30000, 2, 1, 0], [70000, 5, 2, 1]])
+y = np.array([400000, 500000, 300000])
+model = DecisionTreeRegressor()
+model.fit(X, y)
+new_car = [[60000, 4, 1, 1]]
+predicted_price = model.predict(new_car)
+print("Predicted Price:", predicted_price[0])
+print("\nDecision Path:\n")
+print(export_text(model, feature_names=["mileage", "age", "brand", "engine_type"]))
