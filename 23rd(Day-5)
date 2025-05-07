@@ -1,0 +1,18 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from scipy.stats import ttest_ind
+data = {
+    'control': [120, 122, 125, 119, 123, 124],
+    'treatment': [110, 112, 108, 109, 111, 107]
+}
+df = pd.DataFrame(data)
+t_stat, p_val = ttest_ind(df['control'], df['treatment'])
+plt.boxplot([df['control'], df['treatment']], labels=['Control', 'Treatment'])
+plt.title("Blood Pressure After Trial")
+plt.ylabel("Pressure")
+plt.show()
+print(f"T-Statistic: {t_stat:.3f}, P-Value: {p_val:.3f}")
+if p_val < 0.05:
+    print("Statistically significant difference!")
+else:
+    print("No significant difference.")
