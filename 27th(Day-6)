@@ -1,0 +1,9 @@
+from sklearn.linear_model import LogisticRegression
+import numpy as np
+X = np.array([[100, 12], [200, 24], [150, 18], [300, 12]])
+y = np.array([0, 1, 0, 1])  # 0 = not churned, 1 = churned
+model = LogisticRegression()
+model.fit(X, y)
+new_customer = [[180, 12]]
+prediction = model.predict(new_customer)
+print("Will Churn:" , "Yes" if prediction[0] else "No")
