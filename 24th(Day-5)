@@ -1,0 +1,9 @@
+from sklearn.neighbors import KNeighborsClassifier
+X_train = [[1, 1], [2, 2], [3, 3], [8, 8], [9, 9], [10, 10]]
+y_train = [0, 0, 0, 1, 1, 1]
+features = [4.5, 4.5]  # Replace with real symptom values
+k = 3  # Choose k value
+knn = KNeighborsClassifier(n_neighbors=k)
+knn.fit(X_train, y_train)
+prediction = knn.predict([features])
+print("Prediction (1 = condition, 0 = no condition):", prediction[0])
