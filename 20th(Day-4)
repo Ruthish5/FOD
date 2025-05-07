@@ -1,0 +1,11 @@
+from scipy.stats import ttest_ind
+import numpy as np
+group_A = np.random.binomial(1, 0.12, 1000)
+group_B = np.random.binomial(1, 0.15, 1000)
+t_stat, p_value = ttest_ind(group_A, group_B)
+print("T-Statistic:", t_stat)
+print("P-Value:", p_value)
+if p_value < 0.05:
+    print("Statistically significant difference in conversion rates.")
+else:
+    print("No statistically significant difference in conversion rates.")
