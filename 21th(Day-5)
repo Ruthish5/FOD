@@ -1,0 +1,14 @@
+import pandas as pd
+import numpy as np
+import scipy.stats as stats
+data = pd.read_csv('rare_elements.csv')
+measurements = data['concentration'].dropna()
+n = int(input("Enter sample size: "))
+confidence = float(input("Enter confidence level (e.g., 0.95): "))
+sample = np.random.choice(measurements, n, replace=False)
+mean = np.mean(sample)
+sem = stats.sem(sample)
+margin = sem * stats.t.ppf((1 + confidence) / 2, n - 1)
+ci = (mean - margin, mean + margin)
+print(f"Point Estimate (mean): {mean:.4f}")
+print(f"{int(confidence*100)}% Confidence Interval: {ci}")
