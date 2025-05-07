@@ -1,0 +1,8 @@
+from sklearn.cluster import KMeans
+import numpy as np
+X = np.array([[1000, 10], [2000, 20], [1500, 15], [8000, 80]])
+kmeans = KMeans(n_clusters=2, random_state=0)
+kmeans.fit(X)
+new_customer = [[1700, 18]]
+segment = kmeans.predict(new_customer)
+print("Customer Segment:", segment[0])
